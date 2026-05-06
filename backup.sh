@@ -7,7 +7,7 @@ LOCK_FILE="/tmp/backup.lock"
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M")
 ARCHIVE_NAME="logs_backup_${TIMESTAMP}.tar.gz"
 
-# 2. Перевірка кількості аргументів (еревіряємо, чи передано рівно 2 параметри)
+# 2. Перевірка кількості аргументів (перевіряємо, чи передано рівно 2 параметри)
 if [ "$#" -ne 2 ]; then
     echo "Usage: ./backup.sh <log_dir> <backup_dir>"
     exit 1
@@ -19,7 +19,7 @@ if [ ! -d "$LOG_DIR" ] || [ ! -d "$BACKUP_DIR" ]; then
     exit 1
 fi
 
-# 4. Захист від паралельного запуску (кщо lock-файл вже існує, скрипт припиняє роботу)
+# 4. Захист від паралельного запуску (якщо lock-файл вже існує, скрипт припиняє роботу)
 if [ -f "$LOCK_FILE" ]; then
     echo "Backup already running"
     exit 1
